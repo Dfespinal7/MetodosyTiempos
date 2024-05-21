@@ -59,4 +59,4 @@ class FichaTecnica(models.Model):
     minTurno=models.ForeignKey(Turno,on_delete=models.CASCADE)
     suplementos=models.ForeignKey(Suplemento,on_delete=models.CASCADE)
 
-
+"""este es un comentario de prueba"""
