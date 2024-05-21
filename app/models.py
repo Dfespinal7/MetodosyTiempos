@@ -25,19 +25,38 @@ class MaquinaDeCoser(models.Model):
     
     def __str__(self):
         return f"{self.nombre}"
+    
+class operacion(models.Model):
+    codigo=models.CharField(primary_key=True,blank=True,max_length=150)
+    nombre=models.CharField(max_length=150)
+    def __str__(self):
+        return f"{self.nombre}"
+    
+class Suplemento(models.Model):
+    id=models.BigAutoField(primary_key=True,blank=True)
+    porcentaje=models.CharField(max_length=150,null=True)
+    def __str__(self):
+        return f"{self.porcentaje}"
 
+class Turno(models.Model):
+    id=models.BigAutoField(primary_key=True,blank=True)
+    turno=models.IntegerField(null=True)
+    def __str__(self):
+        return f"{self.turno}"
+
+    
 class FichaTecnica(models.Model):
     idFicha=models.BigAutoField(primary_key=True, blank=True)
     idUsuario=models.ForeignKey(Usuario,on_delete=models.CASCADE)
     fecha=models.DateField()
-    operacion=models.CharField(max_length=150)
+    operacion=models.ForeignKey(operacion,on_delete=models.CASCADE)
     codigo_Operacion=models.CharField(max_length=150)
     tipoMaquina=models.ForeignKey(MaquinaDeCoser,on_delete=models.CASCADE)
     ref=models.CharField(max_length=150)
     rpm=models.IntegerField()
     modulo=models.CharField(max_length=150)
     ppp=models.CharField(max_length=150)
-    minTurno=models.IntegerField()
-    suplementos=models.CharField(max_length=150)
+    minTurno=models.ForeignKey(Turno,on_delete=models.CASCADE)
+    suplementos=models.ForeignKey(Suplemento,on_delete=models.CASCADE)
 
 

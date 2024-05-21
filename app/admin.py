@@ -4,4 +4,9 @@ from .models import *
 admin.site.register(Usuario)
 admin.site.register(FichaTecnica)
 admin.site.register(MaquinaDeCoser)
+admin.site.register(operacion)
+admin.site.register(Suplemento)
+admin.site.register(Turno)
+
+
 # Register your models here.
