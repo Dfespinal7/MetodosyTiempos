@@ -1,0 +1,59 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block titul %}formulario ficha{% endblock %}
+
+
+{% block container %}
+
+
+
+
+        <h1>Ficha Tecnica</h1>
+    
+    {% if data %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="border p-4 rounded w-75">
+            <a href="{% url 'form_fichat' %}" class="btn btn-outline-primary">Crear</a>
+            <table class="table table-hover">
+                <tr>
+                    <th>usuario</th>
+                    <th>fecha</th>
+                    <th>operacion</th>
+                    <th>codigo de operacion</th>
+                    <th>tipo de maquina</th>
+                    <th>referencia</th>
+                    <th>rpm</th>
+                    <th>modulo</th>
+                    <th>ppp</th>
+                    <th>min turno</th>
+                    <th>suplemento</th>
+                    <th>Accion</th>
+                </tr>
+                {% for i in data %}
+                <tr>
+                    <td>{{i.idUsuario}}</td>
+                    <td>{{i.fecha}}</td>
+                    <td>{{i.operacion}}</td>
+                    <td>{{i.codigo_Operacion}}</td>
+                    <td>{{i.tipoMaquina}}</td>
+                    <td>{{i.ref}}</td>
+                    <td>{{i.rpm}}</td>
+                    <td>{{i.modulo}}</td>
+                    <td>{{i.ppp}}</td>
+                    <td>{{i.minTurno}}</td>
+                    <td>{{i.suplementos}}</td>
+                    <td>
+                        <a href="" class="btn btn-warning">Editar</a>
+                        <a href="" class="btn btn-danger">Eliminar</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <h1>No hay registros en el momento</h1>
+    {% endif %}
+{% endblock %}
