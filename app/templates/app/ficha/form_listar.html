@@ -1,70 +1,88 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
-{% block titul %}formulario ficha{% endblock %}
-
+{% block titul %}Formulario Ficha{% endblock %}
 
 {% block container %}
-
 
 <div class="d-flex justify-content-center align-items-center mt-2">
     <div class="border p-4 rounded w-75">
         <h1>TIEMPOS PREDETERMINADOS</h1>
         <form action="">
             {% csrf_token %}
-            <label for="" class="form-label">Usuario</label><br>
-            <select name="" id="" class="form-control">
-                <option value="">Seleccione un Usuario</option>
-                {% for usuario in usuarios %}
-                    <option value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
-                {% endfor %}
-            </select>
-            <label for="" class="form-label">fecha</label>
-            <input type="date" class="form-control">
-            <label for="" class="form-label">operacion</label>
-            <select name="" id="operacion" class="form-control" onchange="actcodOp()">
-                {% for operacion in operaciones %}
-                <option value="">Seleccione una operacion</option>
-                    <option value="operacion.codigo" data-cod="{{operacion.codigo}}">{{operacion.nombre}}</option>
-                {% endfor %}     
-            </select>
-            <label for="">Codigo de operacion</label>
-            <input type="text" class="form-control" id="codigo_op" readonly>
-            <label for="">Tipo de Maquina</label>
-            <select name="" class="form-control" id="tipo_maquina" onchange="actRPM()">
-                <option value="">Seleccione una máquina</option>
-                {% for maquina in maquinas %}
-                    <option value="{{maquina.id}}" data-rpm="{{maquina.rpm}}" data-ppp="{{maquina.puntadas_por_min}}">{{maquina.nombre}}</option>
-                {% endfor %}
-            </select>
-            <label for="rpm" class="form-label" >rpm</label>
-            
-            <input type="text" class="form-control" id="rpm" readonly>
-            <label for="" class="form-label">ppp</label>
-            <input type="text" class="form-control" id="ppp" readonly>
-            <label for="" class="form-label">referencia</label>
-            <input type="text" class="form-control">
-            <label for="" class="form-label">modulo</label>
-            <input type="text" class="form-control">
-            <label for="" class="form-label">Minutos por turno</label>
-            <select name="" id="" class="form-control">
-                <option value="">Seleccione Turno</option>
-                {% for turno in turnos %}
-                    <option value="{{turno.id}}">{{turno.turno}}</option>
-                {% endfor %}
-            </select>
-            <label for="" class="form-label">suplementos</label>
-            <select name="" id="" class="form-control">
-                <option value="">Seleccione porcentaje</option>
-                {% for suplemento in suplementos %}
-                    <option value="{{suplemento.id}}">{{suplemento.porcentaje}}</option>
-                {% endfor %}
-                
-            </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="usuario" class="form-label">Usuario</label><br>
+                    <select name="usuario" id="usuario" class="form-control">
+                        <option value="">Seleccione un Usuario</option>
+                        {% for usuario in usuarios %}
+                            <option value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" id="fecha" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="operacion" class="form-label">Operación</label>
+                    <select name="operacion" id="operacion" class="form-control" onchange="actcodOp()">
+                        <option value="">Seleccione una operación</option>
+                        {% for operacion in operaciones %}
+                            <option value="{{operacion.codigo}}" data-cod="{{operacion.codigo}}">{{operacion.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="codigo_op" class="form-label">Código de Operación</label>
+                    <input type="text" id="codigo_op" class="form-control" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="tipo_maquina" class="form-label">Tipo de Máquina</label>
+                    <select name="tipo_maquina" id="tipo_maquina" class="form-control" onchange="actRPM()">
+                        <option value="">Seleccione una máquina</option>
+                        {% for maquina in maquinas %}
+                            <option value="{{maquina.id}}" data-rpm="{{maquina.rpm}}" data-ppp="{{maquina.puntadas_por_min}}">{{maquina.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="rpm" class="form-label">RPM</label>
+                    <input type="text" id="rpm" class="form-control" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="ppp" class="form-label">PPP</label>
+                    <input type="text" id="ppp" class="form-control" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="referencia" class="form-label">Referencia</label>
+                    <input type="text" id="referencia" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="modulo" class="form-label">Módulo</label>
+                    <input type="text" id="modulo" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="min_turno" class="form-label">Minutos por Turno</label>
+                    <select name="min_turno" id="min_turno" class="form-control">
+                        <option value="">Seleccione Turno</option>
+                        {% for turno in turnos %}
+                            <option value="{{turno.id}}">{{turno.turno}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="suplementos" class="form-label">Suplementos</label>
+                    <select name="suplementos" id="suplementos" class="form-control">
+                        <option value="">Seleccione porcentaje</option>
+                        {% for suplemento in suplementos %}
+                            <option value="{{suplemento.id}}">{{suplemento.porcentaje}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
             <h1>Tiempos de costura</h1>
             <button type="submit" class="btn btn-primary">Crear</button>
-
-
         </form>
         <script src="{% static 'app/js/funciones.js' %}"></script>
     </div>
