@@ -43,6 +43,9 @@ class Turno(models.Model):
     turno=models.IntegerField(null=True)
     def __str__(self):
         return f"{self.turno}"
+    
+class Gtf(models.Model):
+    pass
 
     
 class FichaTecnica(models.Model):

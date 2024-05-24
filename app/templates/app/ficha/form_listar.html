@@ -48,11 +48,11 @@
                 </div>
                 <div class="col-md-6">
                     <label for="rpm" class="form-label">RPM</label>
-                    <input type="text" id="rpm" class="form-control" readonly>
+                    <input type="text" id="rpm" class="form-control" oninput="MTS()" readonly >
                 </div>
                 <div class="col-md-6">
                     <label for="ppp" class="form-label">PPP</label>
-                    <input type="text" id="ppp" class="form-control" readonly>
+                    <input type="text" id="ppp" class="form-control" oninput="MTS()"  >
                 </div>
                 <div class="col-md-6">
                     <label for="referencia" class="form-label">Referencia</label>
@@ -82,6 +82,25 @@
                 </div>
             </div>
             <h1>Tiempos de costura</h1>
+            <label for="" class="form-label">Tipo de Tela</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label">MST(Tiempo minimo de Costura)</label>
+            <input type="text" class="form-control" id="resulmt" readonly>
+            <label for="" class="form-label">GTF (Factor de Guia y Tensión)</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label">LOS (Distancia de Costura)</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label">N° DE PARADAS</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label">CONSTANTE (Valor 1 TMU)</label>
+            <input type="text" class="form-control" value="0.0006" readonly id="consta">
+            <label for="" class="form-label">HSF (Factor de Alta Velocidad)</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label"> SS (Parada de Arranque)</label>
+            <input type="text" class="form-control">
+            <label for="" class="form-label">TMU COSTURA</label>
+            <input type="text" class="form-control">
+
             <button type="submit" class="btn btn-primary">Crear</button>
         </form>
         <script src="{% static 'app/js/funciones.js' %}"></script>
