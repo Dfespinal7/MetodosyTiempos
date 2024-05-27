@@ -4,9 +4,15 @@ function actRPM(){
     var rpm = selectedOption.getAttribute('data-rpm');
     var ppp=selectedOption.getAttribute('data-ppp');
     document.getElementById('rpm').value = rpm;
-    HSF(); // Llamar a la función HSF aquí para actualizar el campo fhsf
-    MTS()
-    console.log(rpm)
+    
+    if (!isNaN(rpm)) { // Verificar si rpm es un número válido
+        document.getElementById('rpm').value = rpm;
+        console.log(rpm);
+        var div = parseFloat(rpm) / 1000;
+        document.getElementById("fhsf").value = div; 
+    } else {
+        console.log("El valor de RPM no es un número válido.");
+    }
     
     
 }
