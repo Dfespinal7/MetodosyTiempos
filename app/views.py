@@ -13,5 +13,7 @@ def form_fichat(request):
     M=MaquinaDeCoser.objects.all()
     T=Turno.objects.all()
     S=Suplemento.objects.all()
-    contex={"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S}
+    G=Gtf.objects.all()
+    P=Presicion_de_parada.objects.all()
+    contex={"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P}
     return render(request,'app/ficha/form_listar.html',contex)

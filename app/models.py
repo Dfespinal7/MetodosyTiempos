@@ -45,7 +45,20 @@ class Turno(models.Model):
         return f"{self.turno}"
     
 class Gtf(models.Model):
-    pass
+    idGtf=models.BigAutoField(primary_key=True,blank=True)
+    referencia=models.CharField(max_length=150)
+    valor=models.FloatField(default=0.0)
+    def __str__(self):
+        return f"{self.valor}"
+    
+
+class Presicion_de_parada(models.Model):
+    idParada=models.BigAutoField(primary_key=True,blank=True)
+    referencia=models.CharField(max_length=150)
+    valor=models.FloatField(default=0.0)
+    def __str__(self):
+        return f"{self.valor}"
+
 
     
 class FichaTecnica(models.Model):
@@ -61,5 +74,15 @@ class FichaTecnica(models.Model):
     ppp=models.CharField(max_length=150)
     minTurno=models.ForeignKey(Turno,on_delete=models.CASCADE)
     suplementos=models.ForeignKey(Suplemento,on_delete=models.CASCADE)
+    tipoTela=models.CharField(max_length=150)
+    tiempoMinimoCostura=models.FloatField(default=0.0)
+    gtf=models.ForeignKey(Gtf,on_delete=models.CASCADE)
+    distanciaCostura=models.FloatField(default=0.0)
+    numeroParadas=models.IntegerField(default=0)
+    constante=models.FloatField(default=0.0006)
+    factorAltaVelocidad=models.FloatField(default=0.0)
+    paradaArranque=models.IntegerField(default=0)
+    presicionParada=models.ForeignKey(Presicion_de_parada,on_delete=models.CASCADE)
+    tmuCostura=models.FloatField(default=0.0)
 
 

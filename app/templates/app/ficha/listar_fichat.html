@@ -13,7 +13,7 @@
     
     {% if data %}
     <div class="d-flex justify-content-center align-items-center">
-        <div class="border p-4 rounded w-75">
+        <div class="border p-4 rounded w-78 m-2">
             <a href="{% url 'form_fichat' %}" class="btn btn-outline-primary">Crear</a>
             <table class="table table-hover">
                 <tr>
@@ -28,6 +28,17 @@
                     <th>ppp</th>
                     <th>min turno</th>
                     <th>suplemento</th>
+                    <th>Tipo de tela</th>
+                    <th>MST</th>
+                    <th>GTF</th>
+                    <th>Distancia de Costura</th>
+                    <th>N paradas</th>
+                    <th>CONSTANTE</th>
+                    <th>HSF</th>
+                    <th> SS </th>
+                    <th> P</th>
+                    <th>TMU COSTURA</th>
+
                     <th>Accion</th>
                 </tr>
                 {% for i in data %}
@@ -43,6 +54,16 @@
                     <td>{{i.ppp}}</td>
                     <td>{{i.minTurno}}</td>
                     <td>{{i.suplementos}}</td>
+                    <td>{{i.tipoTela}}</td>
+                    <td>{{i.tiempoMinimoCostura}}</td>
+                    <td>{{i.gtf}}</td>
+                    <td>{{i.distanciaCostura}}</td>
+                    <td>{{i.numeroParadas}}</td>
+                    <td>{{i.constante}}</td>
+                    <td>{{i.factorAltaVelocidad}}</td>
+                    <td>{{i.paradaArranque}}</td>
+                    <td>{{i.presicionParada}}</td>
+                    <td>{{i.tmuCostura}}</td>
                     <td>
                         <a href="" class="btn btn-warning">Editar</a>
                         <a href="" class="btn btn-danger">Eliminar</a>
