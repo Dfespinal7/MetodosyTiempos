@@ -43,11 +43,16 @@ function arranque_parada(){
     var inde = document.getElementById("gtff");
     var selectedOption = inde.options[inde.selectedIndex];
     var gtf = parseFloat(selectedOption.getAttribute('data-gtf')) || 0;
+    var los=parseFloat(document.getElementById("dista").value)||0
+    var hsf=parseFloat(document.getElementById("fhsf").value)||0
+    var parada=document.getElementById("parad")
+    var seleccion=parada.options[parada.selectedIndex]
+    var p=parseFloat(seleccion.getAttribute("data-parada"))||0
 
     
 
     // Calcular y actualizar el valor de TMU COSTURA
-    var respu = mts * gtf;
+    var respu = (mts * gtf * los *hsf)+valor2+p
     document.getElementById("resultmu").value = respu.toFixed(2); // Mostrar el resultado 
     
 }
@@ -59,3 +64,5 @@ document.getElementById('gtff').addEventListener('change', arranque_parada);
 
 document.getElementById('ppp').addEventListener('input', MTS);
 document.getElementById('rpm').addEventListener('input', MTS);
+document.getElementById('parad').addEventListener('change', arranque_parada);
+
