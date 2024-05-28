@@ -31,6 +31,11 @@ function MTS(){
    document.getElementById('resulmt').value = multi.toFixed(2);
 }
 
+function arranque_parada(){
+    var valor1=parseInt(document.getElementById("nparadas").value)||0
+    var valor2=valor1*17
+    document.getElementById("parada_arranque").value=valor2
+}
 
 // Asegúrate de que esta función esté definida y se llame cuando cambie el tipo de máquina
 document.getElementById('tipo_maquina').addEventListener('change', actRPM);
