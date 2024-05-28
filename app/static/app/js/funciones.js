@@ -11,7 +11,7 @@ function actRPM(){
         var div = parseFloat(rpm) / 1000;
         document.getElementById("fhsf").value = div; 
     
-    
+        MTS();
     
 }
 function actcodOp(){
@@ -29,13 +29,33 @@ function MTS(){
    
    var multi=ppp/div
    document.getElementById('resulmt').value = multi.toFixed(2);
+   arranque_parada();
 }
 
 function arranque_parada(){
     var valor1=parseInt(document.getElementById("nparadas").value)||0
     var valor2=valor1*17
     document.getElementById("parada_arranque").value=valor2
+
+    var mts = parseFloat(document.getElementById("resulmt").value) || 0;
+
+    // Obtener el valor del select gtff
+    var inde = document.getElementById("gtff");
+    var selectedOption = inde.options[inde.selectedIndex];
+    var gtf = parseFloat(selectedOption.getAttribute('data-gtf')) || 0;
+
+    
+
+    // Calcular y actualizar el valor de TMU COSTURA
+    var respu = mts * gtf;
+    document.getElementById("resultmu").value = respu.toFixed(2); // Mostrar el resultado 
+    
 }
 
 // Asegúrate de que esta función esté definida y se llame cuando cambie el tipo de máquina
 document.getElementById('tipo_maquina').addEventListener('change', actRPM);
+document.getElementById('nparadas').addEventListener('input', arranque_parada);
+document.getElementById('gtff').addEventListener('change', arranque_parada);
+
+document.getElementById('ppp').addEventListener('input', MTS);
+document.getElementById('rpm').addEventListener('input', MTS);

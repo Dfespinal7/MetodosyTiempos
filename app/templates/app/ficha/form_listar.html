@@ -87,10 +87,10 @@
             <label for="" class="form-label">MST(Tiempo minimo de Costura)</label>
             <input type="text" class="form-control" id="resulmt" readonly>
             <label for="" class="form-label">GTF (Factor de Guia y Tensión)</label>
-            <select name="" id="" class="form-control">
-                <option value="">Seleccione</option>
+            <select name="" id="gtff" class="form-control">
+                <option value="" >Seleccione</option>
                 {% for gtf in gtfs %}
-                    <option value="{{gtf.idGtf}}">{{gtf.valor}}</option>
+                    <option value="{{gtf.idGtf}}" data-gtf="{{gtf.valor}}">{{gtf.valor}}</option>
                 {% endfor %}
             </select>
             <label for="" class="form-label">LOS (Distancia de Costura)</label>
@@ -104,14 +104,14 @@
             <label for="" class="form-label"> SS (Parada de Arranque)</label>
             <input type="text" class="form-control" id="parada_arranque">
             <label for="" class="form-label"> P (Precisión de Parada)</label>
-            <select name="" id="" class="form-control">
+            <select name="" id="parad" class="form-control">
                 <option value="">Seleccione</option>
                 {% for parada in paradas %}
-                    <option value="{{parada.idParada}}">{{parada.valor}}</option>
+                    <option value="{{parada.idParada}}" data-parada="{{parada.valor}}">{{parada.valor}}</option>
                 {% endfor %}
             </select>
             <label for="" class="form-label">TMU COSTURA</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id="resultmu">
 
             <button type="submit" class="btn btn-primary">Crear</button>
         </form>
