@@ -39,7 +39,7 @@ function arranque_parada(){
 
     var mts = parseFloat(document.getElementById("resulmt").value) || 0;
 
-    // Obtener el valor del select gtff
+    
     var inde = document.getElementById("gtff");
     var selectedOption = inde.options[inde.selectedIndex];
     var gtf = parseFloat(selectedOption.getAttribute('data-gtf')) || 0;
@@ -51,9 +51,9 @@ function arranque_parada(){
 
     
 
-    // Calcular y actualizar el valor de TMU COSTURA
+    
     var respu = (mts * gtf * los *hsf)+valor2+p
-    document.getElementById("resultmu").value = respu.toFixed(2); // Mostrar el resultado 
+    document.getElementById("resultmu").value = respu.toFixed(2); 
     
 }
 

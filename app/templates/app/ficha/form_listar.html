@@ -82,36 +82,58 @@
                 </div>
             </div>
             <h1>Tiempos de costura</h1>
-            <label for="" class="form-label">Tipo de Tela</label>
-            <input type="text" class="form-control">
-            <label for="" class="form-label">MST(Tiempo minimo de Costura)</label>
-            <input type="text" class="form-control" id="resulmt" readonly>
-            <label for="" class="form-label">GTF (Factor de Guia y Tensión)</label>
-            <select name="" id="gtff" class="form-control">
-                <option value="" >Seleccione</option>
-                {% for gtf in gtfs %}
-                    <option value="{{gtf.idGtf}}" data-gtf="{{gtf.valor}}">{{gtf.valor}}</option>
-                {% endfor %}
-            </select>
-            <label for="" class="form-label">LOS (Distancia de Costura)</label>
-            <input type="text" class="form-control" id="dista" oninput="arranque_parada()"">
-            <label for="" class="form-label">N° DE PARADAS</label>
-            <input type="text" class="form-control" id="nparadas" oninput="arranque_parada()">
-            <label for="" class="form-label">CONSTANTE (Valor 1 TMU)</label>
-            <input type="text" class="form-control" value="0.0006" readonly id="consta">
-            <label for="" class="form-label">HSF (Factor de Alta Velocidad)</label>
-            <input type="text" class="form-control" id="fhsf" readonly>
-            <label for="" class="form-label"> SS (Parada de Arranque)</label>
-            <input type="text" class="form-control" id="parada_arranque">
-            <label for="" class="form-label"> P (Precisión de Parada)</label>
-            <select name="" id="parad" class="form-control">
-                <option value="">Seleccione</option>
-                {% for parada in paradas %}
-                    <option value="{{parada.idParada}}" data-parada="{{parada.valor}}">{{parada.valor}}</option>
-                {% endfor %}
-            </select>
-            <label for="" class="form-label">TMU COSTURA</label>
-            <input type="text" class="form-control" id="resultmu">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="form-label">Tipo de Tela</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">MST (Tiempo mínimo de Costura)</label>
+                    <input type="text" class="form-control" id="resulmt" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">GTF (Factor de Guía y Tensión)</label>
+                    <select name="" id="gtff" class="form-control">
+                        <option value="">Seleccione</option>
+                        {% for gtf in gtfs %}
+                            <option value="{{gtf.idGtf}}" data-gtf="{{gtf.valor}}">{{gtf.valor}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">LOS (Distancia de Costura)</label>
+                    <input type="text" class="form-control" id="dista" oninput="arranque_parada()">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">N° DE PARADAS</label>
+                    <input type="text" class="form-control" id="nparadas" oninput="arranque_parada()">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">CONSTANTE (Valor 1 TMU)</label>
+                    <input type="text" class="form-control" value="0.0006" readonly id="consta">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">HSF (Factor de Alta Velocidad)</label>
+                    <input type="text" class="form-control" id="fhsf" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">SS (Parada de Arranque)</label>
+                    <input type="text" class="form-control" id="parada_arranque">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">P (Precisión de Parada)</label>
+                    <select name="" id="parad" class="form-control">
+                        <option value="">Seleccione</option>
+                        {% for parada in paradas %}
+                            <option value="{{parada.idParada}}" data-parada="{{parada.valor}}">{{parada.valor}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">TMU COSTURA</label>
+                    <input type="text" class="form-control" id="resultmu">
+                </div>
+            </div>
 
             <button type="submit" class="btn btn-primary">Crear</button>
         </form>
