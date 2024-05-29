@@ -66,3 +66,26 @@ document.getElementById('ppp').addEventListener('input', MTS);
 document.getElementById('rpm').addEventListener('input', MTS);
 document.getElementById('parad').addEventListener('change', arranque_parada);
 
+
+
+function addRow() {
+    const tableBody = document.getElementById('movimientosBody');
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td><input type="number" name="numero[]" /></td>
+        <td><input type="text" name="codigo[]" /></td>
+        <td><input type="text" name="movimiento[]" /></td>
+        <td><input type="number" name="frecuencia[]" /></td>
+        <td><input type="number" name="distancia[]" /></td>
+        <td><input type="number" name="tmu[]" /></td>
+        <td><input type="number" name="totalTmu[]" /></td>
+        <td><input type="number" name="tiempoSam[]" /></td>
+        <td><button type="button" onclick="removeRow(this)" class="btn btn-outline-danger">Eliminar</button></td>
+    `;
+    tableBody.appendChild(row);
+}
+
+function removeRow(button) {
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}

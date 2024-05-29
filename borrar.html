@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Dinámico</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario Dinámico</h2>
+    <table id="movimientosTable">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>CODIGO</th>
+                <th>MOVIMIENTO</th>
+                <th>FRECUENCIA</th>
+                <th>DISTANCIA</th>
+                <th>TMU</th>
+                <th>TOTAL (TMU)</th>
+                <th>TIEMPO (SAM)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="movimientosBody">
+            <!-- Filas dinámicas serán añadidas aquí -->
+        </tbody>
+    </table>
+    <button onclick="addRow()">Añadir Fila</button>
+
+    <script>
+        let rowCount = 0;
+
+        function addRow() {
+            rowCount++;
+            const tableBody = document.getElementById('movimientosBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="number" name="numero[]"</td>
+                <td><input type="text" name="codigo[]" /></td>
+                <td><input type="text" name="movimiento[]" /></td>
+                <td><input type="number" name="frecuencia[]" /></td>
+                <td><input type="number" name="distancia[]" /></td>
+                <td><input type="number" name="tmu[]" /></td>
+                <td><input type="number" name="totalTmu[]" /></td>
+                <td><input type="number" name="tiempoSam[]" /></td>
+                <td><button onclick="removeRow(this)">Eliminar</button></td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        function removeRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            rowCount--;
+        }
+    </script>
+</body>
+</html>

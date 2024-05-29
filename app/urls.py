@@ -4,4 +4,5 @@ from .views import *
 urlpatterns = [
     path('listar_ficha', listar_fichat,name="listar_ficha"),
     path('form_fichat', form_fichat,name="form_fichat"),
+    path('guardar_ficha', guardar_ficha_tecnica,name="guardar_ficha"),
 ]
