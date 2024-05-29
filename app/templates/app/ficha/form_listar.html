@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="usuario" class="form-label">Usuario</label><br>
-                    <select name="usuario" id="usuario" class="form-control">
+                    <select name="usuario" id="usuario" class="form-control" required>
                         <option value="">Seleccione un Usuario</option>
                         {% for usuario in usuarios %}
                             <option value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
@@ -22,11 +22,11 @@
                 </div>
                 <div class="col-md-6">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" id="fecha" class="form-control" name="fecha">
+                    <input type="date" id="fecha" class="form-control" name="fecha" required>
                 </div>
                 <div class="col-md-6">
                     <label for="operacion" class="form-label">Operación</label>
-                    <select name="operacion" id="operacion" class="form-control" onchange="actcodOp()">
+                    <select name="operacion" id="operacion" class="form-control" onchange="actcodOp()" required>
                         <option value="">Seleccione una operación</option>
                         {% for operacion in operaciones %}
                             <option value="{{operacion.codigo}}" data-cod="{{operacion.codigo}}">{{operacion.nombre}}</option>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="tipo_maquina" class="form-label">Tipo de Máquina</label>
-                    <select name="tipo_maquina" id="tipo_maquina" class="form-control" onchange="actRPM()">
+                    <select name="tipo_maquina" id="tipo_maquina" class="form-control" onchange="actRPM()" required>
                         <option value="">Seleccione una máquina</option>
                         {% for maquina in maquinas %}
                             <option value="{{maquina.id}}" data-rpm="{{maquina.rpm}}" data-ppp="{{maquina.puntadas_por_min}}">{{maquina.nombre}}</option>
@@ -48,23 +48,23 @@
                 </div>
                 <div class="col-md-6">
                     <label for="rpm" class="form-label">RPM</label>
-                    <input type="number" id="rpm" class="form-control" oninput="MTS()" readonly name="rpm">
+                    <input type="number" id="rpm" class="form-control" oninput="MTS()" readonly name="rpm" required>
                 </div>
                 <div class="col-md-6">
                     <label for="ppp" class="form-label">PPP</label>
-                    <input type="text" id="ppp" class="form-control" oninput="MTS()" name="ppp" >
+                    <input type="text" id="ppp" class="form-control" oninput="MTS()" name="ppp" required>
                 </div>
                 <div class="col-md-6">
                     <label for="referencia" class="form-label">Referencia</label>
-                    <input type="text" id="referencia" class="form-control" name="ref">
+                    <input type="text" id="referencia" class="form-control" name="ref" required>
                 </div>
                 <div class="col-md-6">
                     <label for="modulo" class="form-label">Módulo</label>
-                    <input type="text" id="modulo" class="form-control" name="modulo">
+                    <input type="text" id="modulo" class="form-control" name="modulo" required>
                 </div>
                 <div class="col-md-6">
                     <label for="min_turno" class="form-label">Minutos por Turno</label>
-                    <select name="min_turno" id="min_turno" class="form-control">
+                    <select name="min_turno" id="min_turno" class="form-control" required>
                         <option value="">Seleccione Turno</option>
                         {% for turno in turnos %}
                             <option value="{{turno.id}}">{{turno.turno}}</option>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="suplementos" class="form-label">Suplementos</label>
-                    <select name="suplementos" id="suplementos" class="form-control">
+                    <select name="suplementos" id="suplementos" class="form-control" required>
                         <option value="">Seleccione porcentaje</option>
                         {% for suplemento in suplementos %}
                             <option value="{{suplemento.id}}">{{suplemento.porcentaje}}</option>
@@ -85,15 +85,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="form-label">Tipo de Tela</label>
-                    <input type="text" class="form-control" name="tela">
+                    <input type="text" class="form-control" name="tela" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">MST (Tiempo mínimo de Costura)</label>
-                    <input type="number" class="form-control" id="resulmt" readonly name="mts">
+                    <input type="number" class="form-control" id="resulmt" readonly name="mts" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">GTF (Factor de Guía y Tensión)</label>
-                    <select name="gtf" id="gtff" class="form-control">
+                    <select name="gtf" id="gtff" class="form-control" required>
                         <option value="">Seleccione</option>
                         {% for gtf in gtfs %}
                             <option value="{{gtf.idGtf}}" data-gtf="{{gtf.valor}}">{{gtf.valor}}</option>
@@ -102,27 +102,27 @@
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">LOS (Distancia de Costura)</label>
-                    <input type="number" name="los" class="form-control" id="dista" oninput="arranque_parada()">
+                    <input type="number" name="los" class="form-control" id="dista" oninput="arranque_parada()" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">N° DE PARADAS</label>
-                    <input type="number" name="nparadas" class="form-control" id="nparadas" oninput="arranque_parada()">
+                    <input type="number" name="nparadas" class="form-control" id="nparadas" oninput="arranque_parada()" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">CONSTANTE (Valor 1 TMU)</label>
-                    <input type="number" class="form-control" value="0.0006" readonly id="consta" name="consta">
+                    <input type="number" class="form-control" value="0.0006" readonly id="consta" name="consta" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">HSF (Factor de Alta Velocidad)</label>
-                    <input type="number" class="form-control" id="fhsf" readonly name="hsf">
+                    <input type="number" class="form-control" id="fhsf" readonly name="hsf" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">SS (Parada de Arranque)</label>
-                    <input type="number" class="form-control" id="parada_arranque" name="ss">
+                    <input type="number" class="form-control" id="parada_arranque" name="ss" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">P (Precisión de Parada)</label>
-                    <select name="parad" id="parad" class="form-control">
+                    <select name="parad" id="parad" class="form-control" required>
                         <option value="">Seleccione</option>
                         {% for parada in paradas %}
                             <option value="{{parada.idParada}}" data-parada="{{parada.valor}}">{{parada.valor}}</option>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">TMU COSTURA</label>
-                    <input type="text" class="form-control" id="resultmu" name="tmu">
+                    <input type="text" class="form-control" id="resultmu" name="tmu" required>
                 </div>
             </div>
 
