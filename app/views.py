@@ -18,7 +18,8 @@ def form_fichat(request):
     S=Suplemento.objects.all()
     G=Gtf.objects.all()
     P=Presicion_de_parada.objects.all()
-    contex={"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P}
+    cod=Codigos_GSD.objects.all()
+    contex={"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P,"codigos":cod}
     return render(request,'app/ficha/form_listar.html',contex)
 
 

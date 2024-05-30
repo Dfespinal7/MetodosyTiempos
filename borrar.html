@@ -38,7 +38,13 @@
             <!-- Filas dinámicas serán añadidas aquí -->
         </tbody>
     </table>
-    <button onclick="addRow()">Añadir Fila</button>
+    <button onclick="addRow()">Añadir Fila</button><br><br>
+
+
+    <input type="text" name="" id="v1" placeholder="Ingrese un numero" oninput="result()"><br><br>
+
+    <input type="text" id="v2" placeholder="Resultado">
+
 
     <script>
         let rowCount = 0;
@@ -66,6 +72,17 @@
             row.parentNode.removeChild(row);
             rowCount--;
         }
+        function result(){
+            var numero1=parseInt(v1.value)
+            var k="hola, si funciono"
+            if(numero1===1){
+                v2.value=k
+            }
+            else{
+                v2.value="no ingresaste el numero 1"
+            }
+        }
     </script>
+    
 </body>
 </html>
