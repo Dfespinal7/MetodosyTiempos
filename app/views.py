@@ -21,6 +21,7 @@ def form_fichat(request):
     contex={"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P}
     return render(request,'app/ficha/form_listar.html',contex)
 
+
 def guardar_ficha_tecnica(request):
     if request.method=='POST':
         

@@ -84,5 +84,33 @@ class FichaTecnica(models.Model):
     paradaArranque=models.IntegerField(default=0)
     presicionParada=models.ForeignKey(Presicion_de_parada,on_delete=models.CASCADE)
     tmuCostura=models.FloatField(default=0.0)
+    def __str__(self):
+        return f"{self.idFicha}-{self.operacion}"
 
 
+class Codigos_GSD(models.Model):
+    Numero=models.IntegerField(primary_key=True,blank=True)
+    codigo=models.CharField(max_length=150)
+    movimiento=models.CharField(max_length=150)
+    tmu=models.IntegerField()
+    dn=models.IntegerField(blank=True,null=True)
+    secuencia=models.CharField(max_length=150, blank=True,null=True)
+    v1=models.FloatField(blank=True,null=True)
+    v2=models.FloatField(blank=True,null=True)
+    v3=models.FloatField(blank=True,null=True)
+    v4=models.FloatField(blank=True,null=True)
+    v5=models.FloatField(blank=True,null=True)
+
+
+class FormularioDinamico(models.Model):
+    id=models.BigAutoField(primary_key=True, blank=True)
+    fichaTecnica=models.ForeignKey(FichaTecnica,on_delete=models.CASCADE)
+    Numero=models.IntegerField()
+    codigo=models.CharField(max_length=150)
+    movimiento=models.CharField(max_length=150)
+    frecuencia=models.IntegerField()
+    distancia=models.IntegerField()
+    tmu=models.IntegerField()
+    totalTmu=models.FloatField()
+    tiempoSam=models.FloatField()
+    
