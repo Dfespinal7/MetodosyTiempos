@@ -135,10 +135,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Crear</button>
-        </form>
-        <form action="">
+            
+            
+        
             <h2>Formulario Dinámico</h2>
+            <button class="btn btn-outline-success">Agregar Fila</button>
+
+            
             <table id="movimientosTable" class="table table-hover">
                 <thead>
                     <tr>
@@ -150,25 +153,27 @@
                         <th>TMU</th>
                         <th>TOTAL (TMU)</th>
                         <th>TIEMPO (SAM)</th>
-                        <th>Acciones</th>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button></td>
+                        
                     </tr>
                 </thead>
                 <tbody id="movimientosBody">
-                    <!-- Filas dinámicas serán añadidas aquí -->
+                    <tr>
+                        
+                        
+                        <td><input type="text" name="numero"></td>
+                        <td><input type="text" name="codigo"></td>
+                        <td><input type="text" name="movimiento"></td>
+                        <td><input type="text" name="frecuencia"></td>
+                        <td><input type="text" name="distancia"></td>
+                        <td><input type="number" name="tmu"></td>
+                        <td><input type="text" name="total_tmu"></td>
+                        <td><input type="text" name="tiempo_sam"></td>
+                        
+                    </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-outline-primary">Añadir Fila</button>
+            <button type="submit" class="btn btn-primary">Crear</button>
+            
         </form>
         <script src="{% static 'app/js/funciones.js' %}"></script>
     </div>

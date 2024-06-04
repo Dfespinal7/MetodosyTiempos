@@ -18,6 +18,7 @@
             <a href="{% url 'form_fichat' %}" class="btn btn-outline-primary">Crear</a>
             <table class="table table-hover">
                 <tr>
+                    <th>id</th>
                     <th>usuario</th>
                     <th>fecha</th>
                     <th>operacion</th>
@@ -29,21 +30,13 @@
                     <th>ppp</th>
                     <th>min turno</th>
                     <th>suplemento</th>
-                    <th>Tipo de tela</th>
-                    <th>MST</th>
-                    <th>GTF</th>
-                    <th>Distancia de Costura</th>
-                    <th>N paradas</th>
-                    <th>CONSTANTE</th>
-                    <th>HSF</th>
-                    <th> SS </th>
-                    <th> P</th>
-                    <th>TMU COSTURA</th>
+                    
 
                     <th>Accion</th>
                 </tr>
                 {% for i in data %}
                 <tr>
+                    <td>{{i.idFicha}}</td>
                     <td>{{i.idUsuario}}</td>
                     <td>{{i.fecha}}</td>
                     <td>{{i.operacion}}</td>
@@ -55,19 +48,10 @@
                     <td>{{i.ppp}}</td>
                     <td>{{i.minTurno}}</td>
                     <td>{{i.suplementos}}</td>
-                    <td>{{i.tipoTela}}</td>
-                    <td>{{i.tiempoMinimoCostura}}</td>
-                    <td>{{i.gtf}}</td>
-                    <td>{{i.distanciaCostura}}</td>
-                    <td>{{i.numeroParadas}}</td>
-                    <td>{{i.constante}}</td>
-                    <td>{{i.factorAltaVelocidad}}</td>
-                    <td>{{i.paradaArranque}}</td>
-                    <td>{{i.presicionParada}}</td>
-                    <td>{{i.tmuCostura}}</td>
+                    
                     <td>
-                        <a href="" class="btn btn-warning">Editar</a>
-                        <a href="" class="btn btn-danger">Eliminar</a>
+                        <a href="" class="btn btn-outline-success">Ver detalles</a>
+                        <a href="" class="btn btn-outline-danger">Eliminar</a>
                     </td>
 
                 </tr>
