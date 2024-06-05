@@ -73,15 +73,20 @@ function agregarFila() {
     const nuevafila = document.createElement('tr');
     
     nuevafila.innerHTML = `
-        <td><input type="text" name="numero[]"></td>
-        <td><input type="text" name="codigo[]"></td>
-        <td><input type="text" name="movimiento[]"></td>
-        <td><input type="text" name="frecuencia[]"></td>
-        <td><input type="text" name="distancia[]"></td>
-        <td><input type="number" name="tmu[]"></td>
-        <td><input type="text" name="total_tmu[]"></td>
-        <td><input type="text" name="tiempo_sam[]"></td>
+        <td><input type="text" name="numero[]" class="short-input"></td>
+        <td><input type="text" name="codigo[]" class="short-input"></td>
+        <td><input type="text" name="movimiento[]" class="short-input"></td>
+        <td><input type="text" name="frecuencia[]" class="short-input"></td>
+        <td><input type="text" name="distancia[]" class="short-input"></td>
+        <td><input type="number" name="tmu[]" class="short-input"></td>
+        <td><input type="text" name="total_tmu[]" class="short-input"></td>
+        <td><input type="text" name="tiempo_sam[]" class="short-input"></td>
+        <td><button type="button" class="btn btn-danger" onclick="eliminarFila(this)">Eliminar</button></td>
     `;
     
     tabla.appendChild(nuevafila);
+}
+function eliminarFila(button) {
+    const fila = button.parentNode.parentNode;
+    fila.parentNode.removeChild(fila);
 }
