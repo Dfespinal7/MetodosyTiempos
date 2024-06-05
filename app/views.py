@@ -54,17 +54,21 @@ def guardar_ficha_tecnica(request):
             
             
         
-            num=request.POST.get('numero')
-            cod=request.POST.get('codigo')
-            mov=request.POST.get('movimiento')
-            fre=request.POST.get('frecuencia')
-            dist=request.POST.get('distancia')
-            tmu=request.POST.get('tmu')
-            totalTmu=request.POST.get('total_tmu')
-            tiemposam=request.POST.get('tiempo_sam')
-        
-            fila=FormularioDinamico(fichaTecnica=ficha,Numero=num,codigo=cod,movimiento=mov,frecuencia=fre,distancia=dist,tmu=tmu,totalTmu=totalTmu,tiempoSam=tiemposam)
-            fila.save()
+            num=request.POST.getlist('numero[]')
+            cod=request.POST.getlist('codigo[]')
+            mov=request.POST.getlist('movimiento[]')
+            fre=request.POST.getlist('frecuencia[]')
+            dist=request.POST.getlist('distancia[]')
+            tmu=request.POST.getlist('tmu[]')
+            totalTmu=request.POST.getlist('total_tmu[]')
+            tiemposam=request.POST.getlist('tiempo_sam[]')
+
+
+            for i in range(len(num)):
+                if num[i] and cod[i] and mov[i]:
+                    fila=FormularioDinamico(fichaTecnica=ficha,Numero=num[i],codigo=cod[i],movimiento=mov[i],frecuencia=fre[i],distancia=dist[i],tmu=tmu[i],totalTmu=totalTmu[i],tiempoSam=tiemposam[i])
+                    fila.save()
+
             messages.success(request, "Ficha y formulario dinámico creados correctamente")
         except Exception as e:
             messages.warning(request, f"error.{e}")

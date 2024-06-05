@@ -68,47 +68,20 @@ document.getElementById('parad').addEventListener('change', arranque_parada);
 
 
 
-function addRow() {
-    const table = document.getElementById('movimientosTable').getElementsByTagName('tbody')[0];
-    const newRow = table.insertRow();
-
-    // Crear celdas e inputs para cada campo
-    const fields = ['numero', 'codigo', 'movimiento', 'frecuencia', 'distancia', 'tmu', 'total_tmu', 'tiempo_sam'];
-    fields.forEach(field => {
-        const newCell = newRow.insertCell();
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = field;
-        input.classList.add('form-control');
-        newCell.appendChild(input);
-    });
-
-    // Celda para acciones
-    const actionCell = newRow.insertCell();
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'btn btn-outline-danger';
-    deleteButton.innerText = 'Eliminar';
-    deleteButton.type = 'button';
-    deleteButton.onclick = function() {
-        table.deleteRow(newRow.rowIndex - 1);
-    };
-    actionCell.appendChild(deleteButton);
-
-    const saveButton = document.createElement('button');
-    saveButton.className = 'btn btn-outline-primary';
-    saveButton.innerText = 'Guardar';
-    saveButton.type = 'submit';
-    actionCell.appendChild(saveButton);
-
-    // Añadir campo oculto con la clave foránea de ficha técnica
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = 'ficha_tecnica_id';
-    hiddenInput.value = '{{ ficha_tecnica.id }}';
-    newRow.appendChild(hiddenInput);
-}
-
-function removeRow(button) {
-    const row = button.parentNode.parentNode;
-    row.parentNode.removeChild(row);
+function agregarFila() {
+    const tabla = document.getElementById('movimientosBody');
+    const nuevafila = document.createElement('tr');
+    
+    nuevafila.innerHTML = `
+        <td><input type="text" name="numero[]"></td>
+        <td><input type="text" name="codigo[]"></td>
+        <td><input type="text" name="movimiento[]"></td>
+        <td><input type="text" name="frecuencia[]"></td>
+        <td><input type="text" name="distancia[]"></td>
+        <td><input type="number" name="tmu[]"></td>
+        <td><input type="text" name="total_tmu[]"></td>
+        <td><input type="text" name="tiempo_sam[]"></td>
+    `;
+    
+    tabla.appendChild(nuevafila);
 }
