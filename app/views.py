@@ -26,6 +26,7 @@ def form_fichat(request):
 def guardar_ficha_tecnica(request):
     if request.method=='POST':
         try:
+            idFicha=request.POST.get("idFicha")
             usuario=Usuario.objects.get(pk=request.POST.get("usuario"))
             fecha=request.POST.get("fecha")
             opera=operacion.objects.get(pk=request.POST.get("operacion"))
@@ -47,11 +48,37 @@ def guardar_ficha_tecnica(request):
             ss=request.POST.get("ss")
             parad=Presicion_de_parada.objects.get(pk=request.POST.get("parad"))
             tmu=request.POST.get("tmu")
-        
-            ficha=FichaTecnica(idUsuario=usuario,fecha=fecha,operacion=opera,codigo_Operacion=cod_operacion,tipoMaquina=tipo_maquina,ref=ref,rpm=rpm,modulo=modulo,minTurno=min_turno,ppp=ppp,suplementos=suplementos,tipoTela=tela,tiempoMinimoCostura=mts,gtf=gtf,distanciaCostura=los,numeroParadas=nparadas,constante=consta,factorAltaVelocidad=hsf,paradaArranque=ss,presicionParada=parad,tmuCostura=tmu)
-            ficha.save()
-            messages.success(request,"ficha creada correctamente")
-            
+            if idFicha=="":
+                ficha=FichaTecnica(idUsuario=usuario,fecha=fecha,operacion=opera,codigo_Operacion=cod_operacion,tipoMaquina=tipo_maquina,ref=ref,rpm=rpm,modulo=modulo,minTurno=min_turno,ppp=ppp,suplementos=suplementos,tipoTela=tela,tiempoMinimoCostura=mts,gtf=gtf,distanciaCostura=los,numeroParadas=nparadas,constante=consta,factorAltaVelocidad=hsf,paradaArranque=ss,presicionParada=parad,tmuCostura=tmu)
+                ficha.save()
+                messages.success(request,"ficha creada correctamente")
+            else:
+                q=FichaTecnica.objects.get(pk=idFicha)
+                q.idUsuario=usuario
+                q.fecha=fecha
+                q.operacion=opera
+                q.codigo_Operacion=cod_operacion
+                q.tipoMaquina=tipo_maquina
+                q.ref=ref
+                q.rpm=rpm
+                q.modulo=modulo
+                q.minTurno=min_turno
+                q.ppp=ppp
+                q.suplementos=suplementos
+                q.tipoTela=tela
+                q.tiempoMinimoCostura=mts
+                q.gtf=gtf
+                q.distanciaCostura=los
+                q.numeroParadas=nparadas
+                q.constante=consta
+                q.factorAltaVelocidad=hsf
+                q.paradaArranque=ss
+                q.presicionParada=parad
+                q.tmuCostura=tmu
+                q.save()
+                messages.success(request, "Ficha Actualizada")
+            if idFicha != "":
+                FormularioDinamico.objects.filter(fichaTecnica=q).delete()
             
         
             num=request.POST.getlist('numero[]')
@@ -69,7 +96,7 @@ def guardar_ficha_tecnica(request):
                     fila=FormularioDinamico(fichaTecnica=ficha,Numero=num[i],codigo=cod[i],movimiento=mov[i],frecuencia=fre[i],distancia=dist[i],tmu=tmu[i],totalTmu=totalTmu[i],tiempoSam=tiemposam[i])
                     fila.save()
 
-            messages.success(request, "Ficha y formulario dinámico creados correctamente")
+            messages.success(request, "formulario dinámico creados correctamente")
         except Exception as e:
             messages.warning(request, f"error.{e}")
 
@@ -90,7 +117,13 @@ def editar_ficha_form(request,idFicha):
     G=Gtf.objects.all()
     P=Presicion_de_parada.objects.all()
     cod=Codigos_GSD.objects.all()
-    contex={"data":q,"idFicha":idFicha,"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P,"codigos":cod}
+    filas_dinamicas = FormularioDinamico.objects.filter(fichaTecnica=q)
+    contex={"data":q,"idFicha":idFicha,"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P,"codigos":cod, "filas_dinamicas": filas_dinamicas}
     return render(request,'app/ficha/form_listar.html',contex)
 
 
+def eliminar_ficha(request,idFicha):
+    q=FichaTecnica.objects.get(pk=idFicha)
+    q.delete()
+    messages.success(request,"Ficha Tecnica Eliminada")
+    return HttpResponseRedirect(reverse("listar_ficha"))
