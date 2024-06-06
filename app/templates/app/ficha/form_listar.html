@@ -10,64 +10,65 @@
         <h1>TIEMPOS PREDETERMINADOS</h1>
         <form action="{% url 'guardar_ficha' %}" method="post">
             {% csrf_token %}
+            <input type="hidden" name="idFicha" value="{{idFicha}}">
             <div class="row">
                 <div class="col-md-6">
                     <label for="usuario" class="form-label">Usuario</label><br>
                     <select name="usuario" id="usuario" class="form-control" required>
                         <option value="">Seleccione un Usuario</option>
                         {% for usuario in usuarios %}
-                            <option value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
+                            <option value="{{usuario.idUsuario}}"{% if data.idUsuario.idUsuario == usuario.idUsuario %}selected{% endif %}>{{usuario.nombre}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" id="fecha" class="form-control" name="fecha" required>
+                    <input type="date" id="fecha" class="form-control" name="fecha" value="{{data.fecha|date:'Y-m-d'}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="operacion" class="form-label">Operación</label>
                     <select name="operacion" id="operacion" class="form-control" onchange="actcodOp()" required>
                         <option value="">Seleccione una operación</option>
                         {% for operacion in operaciones %}
-                            <option value="{{operacion.codigo}}" data-cod="{{operacion.codigo}}">{{operacion.nombre}}</option>
+                            <option data-cod="{{operacion.codigo}}" value="{{operacion.codigo}}"{% if data.operacion.codigo == operacion.codigo %}selected{% endif %}>{{operacion.nombre}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="codigo_op" class="form-label">Código de Operación</label>
-                    <input type="text" id="codigo_op" class="form-control" readonly name="cod_operacion">
+                    <input type="text" id="codigo_op" class="form-control" readonly name="cod_operacion" value="{{data.codigo_Operacion}}">
                 </div>
                 <div class="col-md-6">
                     <label for="tipo_maquina" class="form-label">Tipo de Máquina</label>
                     <select name="tipo_maquina" id="tipo_maquina" class="form-control" onchange="actRPM()" required>
                         <option value="">Seleccione una máquina</option>
                         {% for maquina in maquinas %}
-                            <option value="{{maquina.id}}" data-rpm="{{maquina.rpm}}" data-ppp="{{maquina.puntadas_por_min}}">{{maquina.nombre}}</option>
+                            <option data-rpm="{{maquina.rpm}}" data-ppp="{{maquina.puntadas_por_min}}" value="{{maquina.id}}"{% if data.tipoMaquina.id == maquina.id %}selected{% endif %}>{{maquina.nombre}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="rpm" class="form-label">RPM</label>
-                    <input type="number" id="rpm" class="form-control" oninput="MTS()" readonly name="rpm" required>
+                    <input type="number" id="rpm" class="form-control" oninput="MTS()" readonly name="rpm" value="{{data.rpm}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="ppp" class="form-label">PPP</label>
-                    <input type="text" id="ppp" class="form-control" oninput="MTS()" name="ppp" required>
+                    <input type="text" id="ppp" class="form-control" oninput="MTS()" name="ppp" value="{{data.ppp}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="referencia" class="form-label">Referencia</label>
-                    <input type="text" id="referencia" class="form-control" name="ref" required>
+                    <input type="text" id="referencia" class="form-control" name="ref" value="{{data.ref}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="modulo" class="form-label">Módulo</label>
-                    <input type="text" id="modulo" class="form-control" name="modulo" required>
+                    <input type="text" id="modulo" class="form-control" name="modulo" required value="{{data.modulo}}">
                 </div>
                 <div class="col-md-6">
                     <label for="min_turno" class="form-label">Minutos por Turno</label>
-                    <select name="min_turno" id="min_turno" class="form-control" required>
+                    <select name="min_turno" id="min_turno" class="form-control"required>
                         <option value="">Seleccione Turno</option>
                         {% for turno in turnos %}
-                            <option value="{{turno.id}}">{{turno.turno}}</option>
+                            <option value="{{turno.id}}"{% if data.minTurno.id == turno.id %}selected{% endif %}>{{turno.turno}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -76,7 +77,7 @@
                     <select name="suplementos" id="suplementos" class="form-control" required>
                         <option value="">Seleccione porcentaje</option>
                         {% for suplemento in suplementos %}
-                            <option value="{{suplemento.id}}">{{suplemento.porcentaje}}</option>
+                            <option value="{{suplemento.id}}"{% if data.suplementos.id == suplemento.id %}selected{% endif %}>{{suplemento.porcentaje}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -85,28 +86,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="form-label">Tipo de Tela</label>
-                    <input type="text" class="form-control" name="tela" required>
+                    <input type="text" class="form-control" name="tela" value="{{data.tipoTela}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">MST (Tiempo mínimo de Costura)</label>
-                    <input type="number" class="form-control" id="resulmt" readonly name="mts" required>
+                    <input type="number" class="form-control" id="resulmt" readonly name="mts" value="{{data.tiempoMinimoCostura}}"  required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">GTF (Factor de Guía y Tensión)</label>
                     <select name="gtf" id="gtff" class="form-control" required>
                         <option value="">Seleccione</option>
                         {% for gtf in gtfs %}
-                            <option value="{{gtf.idGtf}}" data-gtf="{{gtf.valor}}">{{gtf.valor}}</option>
+                            <option data-gtf="{{gtf.valor}}" value="{{gtf.idGtf}}"{% if data.gtf.idGtf == gtf.idGtf %}selected{% endif %} >{{gtf.valor}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">LOS (Distancia de Costura)</label>
-                    <input type="number" name="los" class="form-control" id="dista" oninput="arranque_parada()" required>
+                    <input type="number" name="los" class="form-control" id="dista" oninput="arranque_parada()" value="{{data.distanciaCostura}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">N° DE PARADAS</label>
-                    <input type="number" name="nparadas" class="form-control" id="nparadas" oninput="arranque_parada()" required>
+                    <input type="number" name="nparadas" class="form-control" id="nparadas" oninput="arranque_parada()" value="{{data.numeroParadas}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">CONSTANTE (Valor 1 TMU)</label>
@@ -114,24 +115,24 @@
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">HSF (Factor de Alta Velocidad)</label>
-                    <input type="number" class="form-control" id="fhsf" readonly name="hsf" required>
+                    <input type="number" class="form-control" id="fhsf" readonly name="hsf" value="{{data.factorAltaVelocidad}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">SS (Parada de Arranque)</label>
-                    <input type="number" class="form-control" id="parada_arranque" name="ss" required>
+                    <input type="number" class="form-control" id="parada_arranque" name="ss" value="{{data.paradaArranque}}" required>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">P (Precisión de Parada)</label>
                     <select name="parad" id="parad" class="form-control" required>
                         <option value="">Seleccione</option>
                         {% for parada in paradas %}
-                            <option value="{{parada.idParada}}" data-parada="{{parada.valor}}">{{parada.valor}}</option>
+                            <option data-parada="{{parada.valor}}" value="{{parada.idParada}}"{% if data.presicionParada.idParada == parada.idParada %}selected{% endif %}>{{parada.valor}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">TMU COSTURA</label>
-                    <input type="text" class="form-control" id="resultmu" name="tmu" required>
+                    <input type="text" class="form-control" id="resultmu" name="tmu" value="{{data.tmuCostura}}" required>
                 </div>
             </div>
 

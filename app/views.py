@@ -81,6 +81,16 @@ def guardar_ficha_tecnica(request):
 
 
 def editar_ficha_form(request,idFicha):
-    pass
+    q=FichaTecnica.objects.get(pk=idFicha)
+    U=Usuario.objects.all()
+    O=operacion.objects.all()
+    M=MaquinaDeCoser.objects.all()
+    T=Turno.objects.all()
+    S=Suplemento.objects.all()
+    G=Gtf.objects.all()
+    P=Presicion_de_parada.objects.all()
+    cod=Codigos_GSD.objects.all()
+    contex={"data":q,"idFicha":idFicha,"usuarios":U,"operaciones":O,"maquinas":M,"turnos":T,"suplementos":S,"gtfs":G,"paradas":P,"codigos":cod}
+    return render(request,'app/ficha/form_listar.html',contex)
 
 
