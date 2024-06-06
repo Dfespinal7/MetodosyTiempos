@@ -159,7 +159,7 @@
                     </tr>
                 </thead>
                 <tbody id="movimientosBody">
-                    {% for fila in flila_dinamica %}
+                    {% for fila in filas_dinamicas %}
                     <tr>
                         
 
@@ -167,7 +167,7 @@
                         <td><input type="text" name="codigo[]" class="short-input" value="{{fila.codigo}}"></td>
                         <td><input type="text" name="movimiento[]" class="short-input" value="{{fila.movimiento}}"></td>
                         <td><input type="text" name="frecuencia[]" class="short-input" value="{{fila.frecuencia}}"></td>
-                        <td><input type="text" name="distancia[]" class="short-input" value="{{fila.distacia}}"></td>
+                        <td><input type="text" name="distancia[]" class="short-input" value="{{fila.distancia}}"></td>
                         <td><input type="number" name="tmu[]" class="short-input" value="{{fila.tmu}}"></td>
                         <td><input type="text" name="total_tmu[]" class="short-input" value="{{fila.totalTmu}}"></td>
                         <td><input type="text" name="tiempo_sam[]" class="short-input" value="{{fila.tiempoSam}}"></td>
